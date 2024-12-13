@@ -16,11 +16,25 @@ def count_chars(text):
 
     return count_by_char
 
-def main():
-    with open("./books/frankenstein.txt") as f:
-        file_contents = f.read()
-        print(file_contents)
-        print(count_words(file_contents))
-        print(count_chars(file_contents))
+def print_report(file):
+        file_contents = file.read()
 
+        print(f"--- Begin report of {file.name} ---")
+        # print(file_contents)
+        print(f"{count_words(file_contents)} words found in the document \n")
+        
+        char_data = count_chars(file_contents)
+
+        for char in char_data:
+            if(char.isalpha()):
+                print(f"The {char} character was found {char_data[char]} times")
+
+        print("--- End report ---")
+
+def main():
+    file_path = "./books/frankenstein.txt" 
+    with open(file_path) as f:
+        print_report(f)
+
+        
 main()
